@@ -1,10 +1,14 @@
 # pylint: disable=unused-argument
-from typing import Optional
 from pydantic import BaseModel, Field
 from fastapi import APIRouter, status
 # from tts_api.exceptions import NotFoundException
 
+from pulsar_provider import PulsarProvider
+
 router = APIRouter(prefix="/text", tags=["text"])
+
+
+text_pulsar_provider = PulsarProvider()
 
 
 class TextRequest(BaseModel):
