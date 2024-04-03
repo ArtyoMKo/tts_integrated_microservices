@@ -13,7 +13,6 @@ class TextRequest(BaseModel):
 
 @router.post("/", status_code=status.HTTP_201_CREATED)
 async def send_text(
-        # text_request: TextRequest.text
-        text_request: str = Field(min_length=1, examples=["You are awesome !"])
+        text_request: TextRequest
 ):
-    return text_request  # todo: finalize !
+    return text_request.text  # todo: finalize !
