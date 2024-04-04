@@ -7,6 +7,9 @@ __pycache__/
 # caffe/pytorch model files
 *.pth
 
+# pretrained models
+vits/pretrained_models/*
+
 # C extensions
 *.so
 
