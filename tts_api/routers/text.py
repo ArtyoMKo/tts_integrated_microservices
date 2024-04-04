@@ -9,6 +9,7 @@ router = APIRouter(prefix="/text", tags=["text"])
 
 
 text_pulsar_provider = PulsarProvider()
+text_producer = text_pulsar_provider.create_producer('row_text')
 
 
 class TextRequest(BaseModel):
@@ -19,4 +20,5 @@ class TextRequest(BaseModel):
 async def send_text(
         text_request: TextRequest
 ):
+    text_producer.send_async(text_request.text, callback=text_pulsar_provider.send_callback)
     return text_request.text  # todo: finalize !

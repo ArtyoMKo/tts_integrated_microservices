@@ -33,3 +33,6 @@ class PulsarProvider:
 
     def __del__(self):
         self.client.close()
+
+    def send_callback(res, msg_id, args):
+        pass

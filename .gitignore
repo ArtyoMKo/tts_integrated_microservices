@@ -4,6 +4,9 @@ __pycache__/
 *$py.class
 .idea
 
+# caffe/pytorch model files
+*.pth
+
 # C extensions
 *.so
 
