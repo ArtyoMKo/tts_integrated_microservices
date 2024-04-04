@@ -10,7 +10,7 @@ producer_mock = MagicMock()
 pulsar_provider_mock.return_value.create_producer.return_value = producer_mock
 
 # Patch the PulsarProvider in the module where routes are defined
-with patch('pulsar_provider.PulsarProvider', pulsar_provider_mock):
+with patch("pulsar_provider.PulsarProvider", pulsar_provider_mock):
     # Now import the routes module after patching
     from tts_api.routers.text import router, TextRequest, send_text
 
@@ -20,7 +20,7 @@ def client():
     return TestClient(router)
 
 
-@patch('pulsar_provider.PulsarProvider')
+@patch("pulsar_provider.PulsarProvider")
 def test_send_text_success(mock_pulsar_provider, client):
     mock_producer = Mock()
     mock_pulsar_provider.return_value.create_producer.return_value = mock_producer

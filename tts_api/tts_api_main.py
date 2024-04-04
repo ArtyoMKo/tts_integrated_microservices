@@ -23,7 +23,7 @@ app.include_router(text.router)
 
 @app.exception_handler(Exception)
 async def exception_handler(
-        request: Request, exc: Exception
+    request: Request, exc: Exception
 ):  # pylint: disable=unused-argument
     return JSONResponse(
         status_code=500,

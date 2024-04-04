@@ -4,7 +4,7 @@ from pulsar import Producer, Consumer
 
 
 class PulsarProvider:
-    def __init__(self, host: str = 'pulsar://localhost:6650') -> None:
+    def __init__(self, host: str = "pulsar://localhost:6650") -> None:
         """
         Initialize PulsarProvider with a Pulsar client.
 
@@ -12,7 +12,9 @@ class PulsarProvider:
         """
         self.client = Client(host)
 
-    def create_producer(self, topic: str, schema: Schema = BytesSchema(), batching_enabled: bool = False) -> Producer:
+    def create_producer(
+        self, topic: str, schema: Schema = BytesSchema(), batching_enabled: bool = False
+    ) -> Producer:
         """
         Create a Pulsar producer for the given topic.
 
@@ -22,13 +24,13 @@ class PulsarProvider:
         :return: Pulsar producer instance.
         """
         producer = self.client.create_producer(
-            topic,
-            schema=schema,
-            batching_enabled=batching_enabled
+            topic, schema=schema, batching_enabled=batching_enabled
         )
         return producer
 
-    def create_consumer(self, topic: str, subscription_name: str = 'my-sub') -> Consumer:
+    def create_consumer(
+        self, topic: str, subscription_name: str = "my-sub"
+    ) -> Consumer:
         """
         Create a Pulsar consumer for the given topic.
 
@@ -46,7 +48,7 @@ class PulsarProvider:
         self.client.close()
 
     @staticmethod
-    def send_callback(res, msg_id: str, args: dict):
+    def send_callback(res, msg_id: str, *args: tuple):
         """
         Placeholder for a send callback function.
 
