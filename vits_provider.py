@@ -33,7 +33,7 @@ class VitsProvider:
         _ = utils.load_checkpoint(pretrained_model_dir, self.net_g, None)
 
     def transform_tts(self, text):
-        stn_tst = get_text("VITS is Awesome!", self.hps)
+        stn_tst = get_text(text, self.hps)
         with torch.no_grad():
             x_tst = stn_tst.cuda().unsqueeze(0)
             x_tst_lengths = torch.LongTensor([stn_tst.size(0)]).cuda()
