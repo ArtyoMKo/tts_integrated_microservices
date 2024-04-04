@@ -1,6 +1,6 @@
 from pulsar import Client
 from pulsar.schema import BytesSchema, Schema
-from pulsar import Producer,Consumer
+from pulsar import Producer, Consumer
 
 
 class PulsarProvider:
@@ -45,6 +45,7 @@ class PulsarProvider:
         """
         self.client.close()
 
+    @staticmethod
     def send_callback(res, msg_id: str, args: dict):
         """
         Placeholder for a send callback function.

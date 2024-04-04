@@ -26,13 +26,13 @@ def get_text(text: str, hps: utils.HParams) -> torch.LongTensor:
 class VitsProvider:
     def __init__(
             self,
-            hparams_dir: str = "./configs/ljs_base.json",
+            hparams_dir: str = "./vits/configs/ljs_base.json",
             pretrained_model_dir: str = "pretrained_models/pretrained_ljs.pth"
     ) -> None:
         """
         Initialize VitsProvider.
 
-        :param hparams_dir: Directory containing hyperparameters configuration (default: "./configs/ljs_base.json").
+        :param hparams_dir: Directory containing hyperparameters configuration (default: "./vits/configs/ljs_base.json").
         :param pretrained_model_dir: Directory containing the pretrained model (default: "pretrained_models/
         pretrained_ljs.pth").
         """
