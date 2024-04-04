@@ -27,7 +27,7 @@ class VitsProvider:
     def __init__(
             self,
             hparams_dir: str = "./vits/configs/ljs_base.json",
-            pretrained_model_dir: str = "pretrained_models/pretrained_ljs.pth"
+            pretrained_model_dir: str = "./vits/pretrained_models/pretrained_ljs.pth"
     ) -> None:
         """
         Initialize VitsProvider.

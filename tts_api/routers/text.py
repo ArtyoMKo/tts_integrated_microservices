@@ -1,6 +1,7 @@
 # pylint: disable=unused-argument
 from pydantic import BaseModel, Field
 from fastapi import APIRouter, status
+from pulsar.schema import StringSchema
 # from tts_api.exceptions import NotFoundException
 
 from pulsar_provider import PulsarProvider
@@ -9,7 +10,7 @@ router = APIRouter(prefix="/text", tags=["text"])
 
 
 text_pulsar_provider = PulsarProvider()
-text_producer = text_pulsar_provider.create_producer('row_text')
+text_producer = text_pulsar_provider.create_producer('row_text', StringSchema())
 
 
 class TextRequest(BaseModel):
