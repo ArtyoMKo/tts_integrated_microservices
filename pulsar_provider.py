@@ -49,7 +49,9 @@ class PulsarProvider:
         self.client.close()
 
     @staticmethod
-    def send_callback(res, msg_id: str, *args: tuple):  # pylint: disable=unused-argument
+    def send_callback(
+        res, msg_id: str, *args: tuple
+    ):  # pylint: disable=unused-argument
         """
         Placeholder for a send callback function.
 

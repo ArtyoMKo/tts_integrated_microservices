@@ -59,7 +59,9 @@ def tts_handler_subprocess(process_ind: int):
             if not isinstance(msg_batch_decoded, list):
                 msg_batch_decoded = [msg_batch_decoded]
             futures = [
-                executor.submit(transform_produce, message, tts_audio_producer, tts_vits_provider)
+                executor.submit(
+                    transform_produce, message, tts_audio_producer, tts_vits_provider
+                )
                 for message in msg_batch_decoded
             ]
             _ = [future.result() for future in futures if future.result()]
