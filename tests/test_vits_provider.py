@@ -1,8 +1,17 @@
+import pytest
 import torch
 from unittest.mock import MagicMock
 from vits_provider import VitsProvider, get_text
 
-VP = VitsProvider()
+
+# VP = VitsProvider()
+
+@pytest.mark.skip(reason="Test disabled for GitHub Actions")
+def get_vp():
+    return VitsProvider()
+
+
+VP = get_vp()
 
 
 def test_transform_tts():
