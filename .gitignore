@@ -4,6 +4,12 @@ __pycache__/
 *$py.class
 .idea
 
+# caffe/pytorch model files
+*.pth
+
+# pretrained models
+vits/pretrained_models/*
+
 # C extensions
 *.so
 
