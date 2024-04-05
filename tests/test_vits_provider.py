@@ -1,17 +1,8 @@
-import pytest
 import torch
 from unittest.mock import MagicMock
 from vits_provider import VitsProvider, get_text
 
-
-# VP = VitsProvider()
-
-@pytest.mark.skip.skip_for_github_actions
-def get_vp():
-    return VitsProvider()
-
-
-VP = get_vp()
+VP = VitsProvider()
 
 
 def test_transform_tts():

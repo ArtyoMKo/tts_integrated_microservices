@@ -33,4 +33,4 @@ jobs:
         cd ../../
     - name: Running pytest
       run: |
-        pytest -m "not skip_for_github_actions"
+        pytest --ignore=tests/test_vits_provider.py
