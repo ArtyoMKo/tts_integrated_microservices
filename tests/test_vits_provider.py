@@ -6,7 +6,7 @@ from vits_provider import VitsProvider, get_text
 
 # VP = VitsProvider()
 
-@pytest.mark.skip(reason="Test disabled for GitHub Actions")
+@pytest.mark.skip.skip_for_github_actions
 def get_vp():
     return VitsProvider()
 
