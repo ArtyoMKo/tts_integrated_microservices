@@ -27,7 +27,7 @@ jobs:
         pip install -r requirements.txt
     - name: Build monotonic
       run: |
-        apt-get install espeak
+        sudo apt-get install espeak
         cd monotonic_align
         python setup.py build_ext --inplace
         cd ..
