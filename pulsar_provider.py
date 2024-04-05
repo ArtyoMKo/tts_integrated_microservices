@@ -1,3 +1,4 @@
+import logging
 from pulsar import Client
 from pulsar.schema import BytesSchema, Schema
 from pulsar import Producer, Consumer
@@ -48,7 +49,7 @@ class PulsarProvider:
         self.client.close()
 
     @staticmethod
-    def send_callback(res, msg_id: str, *args: tuple):
+    def send_callback(res, msg_id: str, *args: tuple):  # pylint: disable=unused-argument
         """
         Placeholder for a send callback function.
 
@@ -56,4 +57,4 @@ class PulsarProvider:
         :param msg_id: Message ID of the sent message.
         :param args: Additional arguments.
         """
-        pass
+        logging.debug(f"Message result -> {res}")

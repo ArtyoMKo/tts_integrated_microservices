@@ -1,3 +1,4 @@
+# pylint: disable=unused-argument
 from concurrent.futures import ThreadPoolExecutor
 import multiprocessing
 import signal
@@ -21,15 +22,15 @@ def signal_handler(sig: int, frame):
     sys.exit(0)
 
 
-def transform_produce(text_message: str, producer: Producer, vp) -> None:
+def transform_produce(text_message: str, producer: Producer, tts_vits_provider) -> None:
     """
     Transforms text message to audio data and sends it asynchronously.
 
     :param text_message: The text message to transform.
     :param producer: The Pulsar producer instance.
-    :param vp: The VitsProvider instance.
+    :param tts_vits_provider: The VitsProvider instance.
     """
-    audio_data = vp.transform_tts(text_message)
+    audio_data = tts_vits_provider.transform_tts(text_message)
     producer.send_async(
         json.dumps(audio_data).encode("utf-8"), PulsarProvider.send_callback
     )
@@ -41,7 +42,7 @@ def tts_handler_subprocess(process_ind: int):
 
     :param process_ind: The process index.
     """
-    vp = VitsProvider()
+    tts_vits_provider = VitsProvider()
 
     tts_pulsar_provider = PulsarProvider()
     tts_audio_consumer = tts_pulsar_provider.create_consumer(
@@ -54,17 +55,17 @@ def tts_handler_subprocess(process_ind: int):
         msg_batch_decoded = msg.value().decode()
         with ThreadPoolExecutor(
             max_workers=MAX_WORKERS
-        ) as executor:  # Todo: replace ThreadPoolExecutor with Process ... for cloud microservice solution
-            if type(msg_batch_decoded) != list:
+        ) as executor:  # Todo: replace ThreadPoolExecutor with Process ... for cloud microservice solution  # pylint: disable=line-too-long, fixme
+            if not isinstance(msg_batch_decoded, list):
                 msg_batch_decoded = [msg_batch_decoded]
             futures = [
-                executor.submit(transform_produce, message, tts_audio_producer, vp)
+                executor.submit(transform_produce, message, tts_audio_producer, tts_vits_provider)
                 for message in msg_batch_decoded
             ]
-            results = [future.result() for future in futures if future.result()]
+            _ = [future.result() for future in futures if future.result()]
 
         tts_audio_producer.flush()
-        [tts_audio_consumer.acknowledge(message) for message in msg_batch_decoded]
+        _ = [tts_audio_consumer.acknowledge(message) for message in msg_batch_decoded]
 
 
 if __name__ == "__main__":
@@ -73,6 +74,6 @@ if __name__ == "__main__":
     processes = [
         multiprocessing.Process(target=tts_handler_subprocess, args=(i,))
         for i in range(MAX_WORKERS)
-    ]  # Todo: make adaptive !
-    [p.start() for p in processes]
-    [p.join() for p in processes]
+    ]  # Todo: make adaptive !  # pylint: disable=fixme
+    _ = [p.start() for p in processes]
+    _ = [p.join() for p in processes]

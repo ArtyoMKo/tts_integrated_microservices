@@ -1,9 +1,7 @@
 # pylint: disable=unused-argument
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field  # pylint: disable=no-name-in-module
 from fastapi import APIRouter, status
 from pulsar.schema import StringSchema
-
-# from tts_api.exceptions import NotFoundException
 
 from pulsar_provider import PulsarProvider
 
@@ -23,4 +21,4 @@ async def send_text(text_request: TextRequest):
     text_producer.send_async(
         text_request.text, callback=text_pulsar_provider.send_callback
     )
-    return text_request.text  # todo: finalize !
+    return text_request.text
