@@ -28,9 +28,7 @@ jobs:
     - name: Build monotonic
       run: |
         sudo apt-get install espeak
-#        cd vits/monotonic_align
         python vits/monotonic_align/setup.py build_ext --inplace
-#        cd ../../
     - name: Running pytest
       run: |
         pytest -k "not test_vits_provider.py"
