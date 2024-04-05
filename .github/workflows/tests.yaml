@@ -30,7 +30,7 @@ jobs:
         sudo apt-get install espeak
         cd vits/monotonic_align
         python setup.py build_ext --inplace
-        cd ...
+        cd ../../
     - name: Running pytest
       run: |
         pytest
