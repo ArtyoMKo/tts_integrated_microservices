@@ -153,6 +153,9 @@ merged back into the main branch.
 - vits: **As torch required to have Nvidia video card for init and I did not refactor vits, right now CI/CD do not cover 
 vits unit tests**
 - Pulsar: I did not create testing environment for pulsar infra
+  - Based on quick research I assumed that there is a bug in Python 3.6 with ubuntu, many people facing
+  issues with running couple of packages. If you are meeting **segmentation** issues with pytest please ignore
+  ```tests/test_pulsar_provider.py``` test on local machine.
 #### Coverage
 In this repo we are using coverage to check the code coverage of the tests. You can test it by running
 ``` bash

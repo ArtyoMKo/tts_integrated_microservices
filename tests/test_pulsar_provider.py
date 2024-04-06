@@ -45,4 +45,3 @@ class TestPulsarProvider(unittest.TestCase):
     def test_destructor(self, mock_del):
         self.provider.__del__()
         mock_del.assert_called_once()
-
