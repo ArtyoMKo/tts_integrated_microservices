@@ -1,18 +1,14 @@
 import pytest
 from fastapi.testclient import TestClient
-from unittest.mock import Mock, patch
+from unittest.mock import Mock, MagicMock, patch
 
-from unittest.mock import MagicMock, patch
 
-# Mock Pulsar before importing routes
 pulsar_provider_mock = MagicMock()
 producer_mock = MagicMock()
 pulsar_provider_mock.return_value.create_producer.return_value = producer_mock
 
-# Patch the PulsarProvider in the module where routes are defined
 with patch("pulsar_provider.PulsarProvider", pulsar_provider_mock):
-    # Now import the routes module after patching
-    from tts_api.routers.text import router, TextRequest, send_text
+    from tts_api.routers.text import router
 
 
 @pytest.fixture
