@@ -150,6 +150,8 @@ merged back into the main branch.
 - Ask for a merge request to the development branch as soon as possible to avoid differences overlapping.
 
 ### CI/CD
+**As torch required to have Nvidia video card for init and I did not refactor vits, right now CI/CD do not cover 
+vits unit tests**
 #### Coverage
 In this repo we are using coverage to check the code coverage of the tests. You can test it by running
 ``` bash
@@ -168,3 +170,4 @@ will allow you to see which lines are not under coverage.
 - Replace "weird combination" of multiprocessing ang threading with ProcessPoolExecutor.
 - Improve parallelism.
 - Create new and clean TTS model handler and remove **vits**
+- Configure torch unit tests in github CI/CD
