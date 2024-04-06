@@ -8,7 +8,7 @@ import sys
 from vits_provider import VitsProvider
 from pulsar_provider import PulsarProvider, Producer
 
-MAX_WORKERS = 2
+MAX_WORKERS = 2  # os.cpu_count(), be careful with overloading local machine
 
 
 def signal_handler(sig: int, frame):
